@@ -215,7 +215,7 @@
 				if (Auth.getUser()) {
 					Util.openLink('/pages/user/info/info')
 				} else {
-					Util.openLink('/pages/user/login/login')
+					Util.openLink('/pages/public/login')
 				}
 			},
 
