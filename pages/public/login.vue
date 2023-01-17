@@ -355,6 +355,8 @@ export default {
 			await this.$http
 				.post(smsCode, {
 					mobile: this.reqBody['mobile'],
+					type: 'signupin',
+					template: 'ocode',
 					usage
 				})
 				.then(r => {
@@ -434,6 +436,7 @@ export default {
 			if (backUrl.indexOf('promo_code') !== -1) {
 				this.reqBody.promo_code = JSON.parse(backUrl)['query']['promo_code'];
 			}
+			this.reqBody.type = 'signupin';
 			this.handleLogin(this.reqBody, loginApi);
 		},
 		// 登录
@@ -443,6 +446,7 @@ export default {
 				.post(loginApi, params)
 				.then(r => {
 					this.$mHelper.toast('恭喜您，登录成功！');
+					console.log('rrrrrrrrrrrr', r);
 					this.$mStore.commit('login', r.data);
 					if (this.userInfo) {
 						this.btnLoading = false;
@@ -454,16 +458,17 @@ export default {
 						oauthClientParams.oauth_client = 'wechat';
 						/*  #endif  */
 						const userInfo = JSON.parse(this.userInfo);
-						this.$http.post(authLogin, {
+						/*this.$http.post(authLogin, {
 							...userInfo,
 							...oauthClientParams,
 							gender: userInfo.sex || userInfo.gender,
 							oauth_client_user_id: userInfo.openid || userInfo.openId,
 							head_portrait: userInfo.headimgurl || userInfo.avatarUrl
-						});
+						});*/
 					}
 					uni.removeStorageSync('wechatUserInfo');
 					const backToPage = uni.getStorageSync('backToPage');
+					console.log('bbbbb', backToPage);
 					uni.removeStorageSync('backToPage');
 					if (backToPage) {
 						if (

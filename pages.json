@@ -33,6 +33,39 @@
 				"navigationBarTextStyle": "white",
 				"enablePullDownRefresh": false
 			}
+		},
+		{
+			"path": "pages/profile/profile",
+			"style": {
+				"navigationBarTitleText": "我的",
+				// #ifdef MP
+				"navigationStyle": "custom",
+				// #endif
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"type": "transparent",
+						"buttons": [
+							{
+								"fontSrc": "/static/iconfont.ttf",
+								"text": "\ue658",
+								"fontSize": "28",
+								"color": "#303133",
+								"width": "42px",
+								"background": "rgba(0,0,0,0)"
+							},
+							{
+								"fontSrc": "/static/iconfont.ttf",
+								"text": "\ue618",
+								"fontSize": "26",
+								"color": "#303133",
+								"background": "rgba(0,0,0,0)",
+								"redDot": false
+							}
+						]
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

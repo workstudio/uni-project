@@ -7,6 +7,7 @@ module.exports = {
 
 	//用户信息
 	ZHUIGE_USER_KEY: 'zhuige_xcx_user',
+	ZHUIGE_USER_TOKEN: 'zhuige_xcx_token',
 
 	//推荐用户信息
 	ZHUIGE_SOURCE_USER_ID: 'zhuige_source_user_id',

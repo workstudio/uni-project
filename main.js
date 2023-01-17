@@ -11,6 +11,14 @@ import $mGraceChecker from '@/utils/graceChecker';
 import $mFormRule from '@/config/formRule.config.js';
 import $mHelper from '@/utils/helper';
 import $mRouter from '@/utils/router';
+import $mRoutesConfig from '@/config/routes.config.js';
+import VueI18n from '@/common/vue-i18n';
+
+// 引入国际化语言包
+import zh from '@/utils/languages/zh/zh.js';
+import en from '@/utils/languages/en/en.js';
+
+import { http } from '@/utils/request';
 
 Vue.prototype.$mAssetsPath = $mAssetsPath;
 Vue.prototype.$mConstDataConfig = $mConstDataConfig;
@@ -19,11 +27,26 @@ Vue.prototype.$mGraceChecker = $mGraceChecker;
 Vue.prototype.$mFormRule = $mFormRule;
 Vue.prototype.$mHelper = $mHelper;
 Vue.prototype.$mRouter = $mRouter;
+Vue.prototype.$mRoutesConfig = $mRoutesConfig;
+
+Vue.prototype.$http = http;
 
 Vue.prototype.$mStore = store;
 
 Vue.config.productionTip = false
 App.mpType = 'app'
+
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+	locale: store.getters.locale || 'zh',
+	messages: {
+		// eslint-disable-next-line
+		'zh': zh,
+		// eslint-disable-next-line
+		'en': en
+	}
+});
 
 // 路由导航
 $mRouter.beforeEach((navType, to) => {
@@ -82,7 +105,9 @@ Vue.mixin({
 });
 
 const app = new Vue({
-    ...App
+	...App,
+	store,
+	i18n
 })
 app.$mount()
 // #endif

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import $mConstDataConfig from '@/config/constData.config';
 import $mSettingConfig from '@/config/setting.config';
+import Constant from '@/utils/constants';
 
 Vue.use(Vuex);
 const ACCESSTOKEN = uni.getStorageSync('accessToken') || '';
@@ -69,19 +70,24 @@ const store = new Vuex.Store({
 		},
 		// 判断用户是否登录
 		hasLogin: state => {
+		    console.log('cccccccc', state.accessToken);
 			return !!state.accessToken;
 		}
 	},
 	mutations: {
 		login(state, provider) {
 			state.accessToken = provider.access_token;
-			state.refreshToken = provider.refresh_token;
-			state.userInfo = provider.member;
+			//state.refreshToken = provider.refresh_token;
+			state.refreshToken = provider.expires_in;
+			state.userInfo = provider.user;
 			state.user = provider;
+
 			uni.setStorageSync('user', provider);
 			uni.setStorageSync('accessToken', provider.access_token);
-			uni.setStorageSync('refreshToken', provider.refresh_token);
-			uni.setStorageSync('userInfo', provider.member);
+			uni.setStorageSync('refreshToken', provider.expires_in);
+			uni.setStorageSync('userInfo', provider.user);
+			provider.token = provider.access_token;
+		    uni.setStorageSync(Constant.ZHUIGE_USER_KEY, provider);
 		},
 		logout(state) {
 			state.accessToken = '';

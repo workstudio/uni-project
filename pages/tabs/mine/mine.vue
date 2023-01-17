@@ -139,8 +139,12 @@
 
 		onShow() {
 			this.isLogin = !!(Auth.getUser());
+			console.log('iiiiiiiiii', this.isLogin);
 
 			if (this.isLogin) {
+			    let userInfo = Auth.getUser();
+				this.nickname = userInfo.user.nickname;
+				this.avatar = userInfo.user.avatar;
 				Rest.post(Api.URL('user', 'my_statistics'), {}).then(res => {
 					this.post_count = res.data.post_count;
 					this.fans_count = res.data.fans_count;
@@ -148,21 +152,21 @@
 					this.likeme_count = res.data.likeme_count;
 
 					if (res.data.nickname) {
-						this.nickname = res.data.nickname;
+						//this.nickname = res.data.nickname;
 					} else { //用户token未验证通过，则清空
-						uni.clearStorageSync();
+						//uni.clearStorageSync();
 					}
 
 					if (res.data.avatar) {
-						this.avatar = res.data.avatar;
+						//this.avatar = res.data.avatar;
 					}
 
 					if (res.data.certify) {
-						this.certify = res.data.certify;
+						//this.certify = res.data.certify;
 					}
 
 					if (res.data.vip) {
-						this.vip = res.data.vip;
+						//this.vip = res.data.vip;
 					}
 				}, err => {
 					console.log(err)

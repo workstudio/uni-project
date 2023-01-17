@@ -31,10 +31,10 @@ const authLogin = '/tiny-shop/v1/member/auth/create';
 const isBindingCheck = '/tiny-shop/v1/member/auth/is-binding';
 
 // 手机号登录
-const loginBySmsCode = '/tiny-shop/v1/site/mobile-login';
+const loginBySmsCode = '/passport/signupin';//tiny-shop/v1/site/mobile-login';
 
 // 获取手机验证码
-const smsCode = '/tiny-shop/v1/site/sms-code';
+const smsCode = '/passport/send-code';///tiny-shop/v1/site/sms-code';
 
 // 退出登录
 const logout = '/tiny-shop/v1/site/logout';

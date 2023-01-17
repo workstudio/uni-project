@@ -32,6 +32,7 @@ http.interceptor.request(
 	config => {
 		/* 请求之前拦截器 */
 		config.header['x-api-key'] = uni.getStorageSync('accessToken');
+		config.header['Authorization'] = 'Bearer ' + uni.getStorageSync('accessToken');
 		// 单商户
 		// config.header['merchant-id'] = uni.getStorageSync('merchantId') || 1;
 		return config;
