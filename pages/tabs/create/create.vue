@@ -21,7 +21,7 @@
 			</view>
 		</view>
 
-		<view :class="{animation:do_animation}"></view>
+		<!--<view :class="{animation:do_animation}"></view>-->
 	</view>
 </template>
 
